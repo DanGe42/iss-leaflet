@@ -21,6 +21,12 @@
   <body>
     <div id="map"></div>
     <script>
+      var iss = L.icon({ 
+          iconUrl: 'images/ISS.png',
+          iconSize: [50, 50],
+          iconAnchor: [25, 25],
+      });
+
       var mapUpdater = function (map) {
         var marker = null;
 
@@ -30,8 +36,9 @@
          */
         return function (lat, lng, binder) {
           if (!marker) {
-            marker = L.marker([lat, lng]);
-            marker.addTo(map);
+            //marker = L.marker([lat, lng], {icon: myIcon});
+            //marker.addTo(map);
+            marker = L.marker([lat, lng], {icon: iss}).addTo(map);
           } else {
             marker.setLatLng([lat, lng]);
             marker.update();
@@ -54,7 +61,7 @@
         navigator.geolocation.getCurrentPosition( function(position) {
           var lat = position.coords.latitude;
           var lng = position.coords.longitude;
-          L.marker([lat, lng]).addTo(map).bindPopup("My location");
+          L.marker([lat, lng], {icon: iss}).addTo(map).bindPopup("My location");
         });
       };
 
@@ -77,6 +84,7 @@
         updateISSLocation();
         setInterval(updateISSLocation, 5000);
         placeMyLocation(map);
+        console.log(iss);
       });
     </script>
   </body>
