@@ -50,6 +50,15 @@
           "<br>Longitude: " + latlng.lng).openPopup();
       };
 
+      var placeMyLocation = function (map) {
+        navigator.geolocation.getCurrentPosition( function(position) {
+          var lat = position.coords.latitude;
+          var lng = position.coords.longitude;
+          L.marker([lat, lng]).addTo(map).bindPopup("My location");
+        });
+      };
+
+
       $(document).ready(function() {
         var map = new L.Map('map', {
           center: new L.LatLng(37.7, -122.4),
@@ -67,6 +76,7 @@
 
         updateISSLocation();
         setInterval(updateISSLocation, 5000);
+        placeMyLocation(map);
       });
     </script>
   </body>
