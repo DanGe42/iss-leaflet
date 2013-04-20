@@ -4,12 +4,27 @@
     <title>ISS Tracker</title>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.1"></script>
     <style type="text/css">
-      #map { height: 180px; 
+      body{
+  		padding: 0;
+  		margin: 0;
+      }
+
+      html, body, #map { 
+      	height: 100%;
       }
     </style>
   </head>
   <body>
     <div id="map"></div>
+	<script>
+	    var layer = new L.StamenTileLayer("toner");
+		var map = new L.Map("map", {
+	    center: new L.LatLng(37.7, -122.4),
+	    zoom: 12
+		});
+		map.addLayer(layer);
+	</script>
   </body>
 </html>
