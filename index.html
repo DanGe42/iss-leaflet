@@ -20,11 +20,19 @@
     <div id="map"></div>
 	<script>
 	    var layer = new L.StamenTileLayer("toner");
+		
+/* //stamen basemap
 		var map = new L.Map("map", {
 	    center: new L.LatLng(37.7, -122.4),
-	    zoom: 12
+	    zoom: 3
 		});
-		map.addLayer(layer);
+		map.addLayer(layer); */
+//mapbox basemap
+		var map = new L.Map('map', {
+	    center: new L.LatLng(37.7, -122.4),
+	    zoom: 3,
+	    layers: new L.TileLayer('http://a.tiles.mapbox.com/v3/hamhands.map-98c5ubb6/{z}/{x}/{y}.png')
+});
 	</script>
   </body>
 </html>
