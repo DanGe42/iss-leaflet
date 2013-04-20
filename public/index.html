@@ -36,6 +36,7 @@
             marker.setLatLng([lat, lng]);
             marker.update();
           }
+          map.panTo([lat, lng]);
 
           if (binder) {
             binder(marker);
@@ -60,11 +61,11 @@
 
         var updateISSLocation = function() {
           getISSLocation(function(lat, lng) {
-            console.log("Got new location");
             updateMarker(lat, lng, bindMarker);
           });
         };
 
+        updateISSLocation();
         setInterval(updateISSLocation, 5000);
       });
     </script>
