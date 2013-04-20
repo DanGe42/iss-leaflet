@@ -4,10 +4,17 @@
     <title>ISS Tracker</title>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/iss.js"></script>
     <style type="text/css">
-      #map { height: 180px; 
+      #map { height: 180px;
       }
     </style>
+    <script>
+$(document).ready(function() {
+  getISSLocation();
+});
+    </script>
   </head>
   <body>
     <div id="map"></div>
