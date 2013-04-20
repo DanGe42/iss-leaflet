@@ -27,6 +27,12 @@
           iconAnchor: [25, 25],
       });
 
+      var base = L.icon({
+          iconURL: 'images/base.png',
+          iconSize: [50, 50],
+          iconAnchor: [25, 25],
+      });
+
       var mapUpdater = function (map) {
         var marker = null;
 
@@ -36,14 +42,13 @@
          */
         return function (lat, lng, binder) {
           if (!marker) {
-            //marker = L.marker([lat, lng], {icon: myIcon});
-            //marker.addTo(map);
             marker = L.marker([lat, lng], {icon: iss}).addTo(map);
           } else {
             marker.setLatLng([lat, lng]);
             marker.update();
           }
           map.panTo([lat, lng]);
+          //var c = L.circle([lat,lng], 200).addTo(map);
 
           if (binder) {
             binder(marker);
@@ -54,14 +59,14 @@
       var bindMarker = function (marker) {
         var latlng = marker.getLatLng();
         marker.bindPopup("Latitude: " + latlng.lat +
-          "<br>Longitude: " + latlng.lng).openPopup();
+          "<br>Longitude: " + latlng.lng, {offset: new L.Point(0,-25)}).openPopup();
       };
 
       var placeMyLocation = function (map) {
         navigator.geolocation.getCurrentPosition( function(position) {
           var lat = position.coords.latitude;
           var lng = position.coords.longitude;
-          L.marker([lat, lng], {icon: iss}).addTo(map).bindPopup("My location");
+          L.marker([lat, lng], {icon: base}).addTo(map).bindPopup("My location");
         });
       };
 
