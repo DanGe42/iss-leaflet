@@ -21,13 +21,13 @@
   <body>
     <div id="map"></div>
     <script>
-      var iss = L.icon({ 
+      var iss = L.icon({
           iconUrl: 'images/ISS.png',
           iconSize: [50, 50],
           iconAnchor: [25, 25]
       });
 
-      var base = L.icon({ 
+      var base = L.icon({
           iconUrl: 'images/base.png',
           iconSize: [50, 50],
           iconAnchor: [25, 25]
@@ -44,11 +44,14 @@
           if (!marker) {
             marker = L.marker([lat, lng], {icon: iss}).addTo(map);
           } else {
+            var oldLatLng = marker.getLatLng();
             marker.setLatLng([lat, lng]);
             marker.update();
+
+            // Add a marker to mark the path
+            L.marker(oldLatLng).addTo(map);
           }
           map.panTo([lat, lng]);
-          //var c = L.circle([lat,lng], 200).addTo(map);
 
           if (binder) {
             binder(marker);
