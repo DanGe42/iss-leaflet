@@ -33,6 +33,12 @@
           iconAnchor: [25, 25]
       });
 
+      var trail = L.icon({
+        iconUrl: 'images/old.png',
+        iconSize: [16, 16],
+        iconAnchor: [8, 8]
+      });
+
       var mapUpdater = function (map) {
         var marker = null;
 
@@ -49,7 +55,7 @@
             marker.update();
 
             // Add a marker to mark the path
-            L.marker(oldLatLng).addTo(map);
+            L.marker(oldLatLng, {icon: trail}).addTo(map);
           }
           map.panTo([lat, lng]);
 
