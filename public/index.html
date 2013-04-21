@@ -48,7 +48,10 @@
          */
         return function (lat, lng, binder) {
           if (!marker) {
-            marker = L.marker([lat, lng], {icon: iss}).addTo(map);
+            marker = L.marker([lat, lng], {
+              icon: iss,
+              zIndexOffset: 1000
+            }).addTo(map);
           } else {
             var oldLatLng = marker.getLatLng();
             marker.setLatLng([lat, lng]);
