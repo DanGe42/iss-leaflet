@@ -6,7 +6,14 @@
     "start": "node app"
   },
   "dependencies": {
-    "express": "3.0.0rc1",
-    "jade": "*"
-  }
+    "errorhandler": "^1.5.0",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1",
+    "pug": "^2.0.0-beta11",
+    "serve-static": "^1.12.1"
+  },
+  "main": "app.js",
+  "repository": "git@github.com:DanGe42/iss-leaflet",
+  "author": "Daniel Ge <daniel@dge.io>",
+  "license": "MIT"
 }

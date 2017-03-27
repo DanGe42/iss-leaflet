@@ -1,29 +1,33 @@
-
 /**
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes')
-  , http = require('http')
-  , path = require('path');
+const express = require('express');
+const errorHandler = require('errorhandler');
+const morgan = require('morgan');;
+const serveStatic = require('serve-static');
 
-var app = express();
+const http = require('http');
+const path = require('path');
 
-app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.logger('dev'));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
-});
+const routes = require('./routes');
 
-app.configure('development', function(){
-  app.use(express.errorHandler());
-});
+const app = express();
+app.set('port', process.env.PORT || 3000);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'pug');
+app.use(serveStatic(path.join(__dirname, 'public')));
+
+const env = process.env.NODE_ENV || 'development';
+if ('development' === env) {
+  app.use(morgan('dev'));
+  app.use(errorHandler());
+} else if ('production' === env) {
+  app.use(morgan('combined'));
+} else {
+  console.error(`Invalid environment ${env} specified`);
+  process.exit(1);
+}
 
 app.get('/current', routes.current);
 
